@@ -42,13 +42,13 @@ public class GraderTest {
     Scenarios:
     - <0 - exception
     - 59 = 'F' x
-    - 60 = 'D'
+    - 60 = 'D' x
     - 69 = 'D' x
-    - 70 = 'C'
+    - 70 = 'C' x
     - 79 = 'C' x
-    - 80 = 'B'
+    - 80 = 'B' x
     - 89 = 'B' x
-    - 90 = 'A'
+    - 90 = 'A' x
     - 100 = 'A' x
     - 101 = 'A'
 
@@ -107,8 +107,8 @@ public class GraderTest {
     }
 
     @Test
-    public void oneHundredShouldReturnA() {
-        int numberGrade = 100;
+    public void ninetyShouldReturnA() {
+        int numberGrade = 90;
         Grader instance = new Grader();
         char expResult = 'A';
         char result = instance.determineLetterGrade(numberGrade);
@@ -116,4 +116,34 @@ public class GraderTest {
 
     }
 
+    @Test
+    public void negativeOneShouldReturnIllegalArgumentException() {
+        int numberGrade = -1;
+        Grader instance = new Grader();
+        // Note: how we test exception is thrown.
+        assertThrows(IllegalArgumentException.class, () -> {
+            instance.determineLetterGrade(numberGrade);
+        });
+
+    }
+
+    @Test
+    public void eightyShouldReturnB() {
+        int numberGrade = 80;
+        Grader instance = new Grader();
+        char expResult = 'B';
+        char result = instance.determineLetterGrade(numberGrade);
+        assertEquals(expResult, result);
+
+    }
+
+    @Test
+    public void seventyShouldReturnB() {
+        int numberGrade = 70;
+        Grader instance = new Grader();
+        char expResult = 'C';
+        char result = instance.determineLetterGrade(numberGrade);
+        assertEquals(expResult, result);
+
+    }
 }
